@@ -1,0 +1,2 @@
+timestamp,icao24,callsign,origin_country,time_position,last_contact,longitude,latitude,baro_altitude,on_ground,velocity,heading,vertical_rate,sensors,geo_altitude,squawk,spi,position_source
+1613253670,,,,,,,,,,,,,,,,,
