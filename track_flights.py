@@ -18,6 +18,9 @@ def get_flights_from_loc(usr, pwd, loc):
 
 
 def save_flights(with_header=False):
+    columns = StateVector.keys
+    columns.insert(0, 'timestamp')
+    
     if with_header:
         with open("flights_over_cergy.csv", 'w') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=columns)
@@ -39,9 +42,6 @@ credential = credentials("credential.txt")
 # Cergy GPS Bounding Box
 cergy_location = (49.013780, 49.057670, 1.991615, 2.086029)
 states = get_flights_from_loc(credential[0], credential[1], cergy_location)
-
-columns = StateVector.keys
-columns.insert(0, 'timestamp')
 
 # Save those flights
 try:
