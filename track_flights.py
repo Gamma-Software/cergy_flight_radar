@@ -1,7 +1,5 @@
 from opensky_api import OpenSkyApi, StateVector
-
 import csv
-import os.path
 from os import path
 
 
