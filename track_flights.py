@@ -31,8 +31,6 @@ def save_flights(with_header=False):
             for flight in states.states:
                 dict_to_save.update(flight.__dict__)
                 writer.writerow(dict_to_save)
-        else:
-            writer.writerow(dict_to_save)
 
 
 credential = credentials("credential.txt")
