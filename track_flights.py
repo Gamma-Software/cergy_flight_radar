@@ -41,6 +41,13 @@ def save_flights(with_header=False):
                 writer.writerow(dict_to_save)
 
 
+def get_flights_in_last_minute(all_flights, flight_id):
+    # Used to get all the flights within the minute the current flight is
+    flights_in_last_minute = []
+
+    return flights_in_last_minute
+
+
 credential = credentials("credential.txt")
 
 # Cergy GPS Bounding Box
