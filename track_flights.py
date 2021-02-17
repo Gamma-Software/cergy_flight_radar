@@ -1,6 +1,7 @@
 from opensky_api import OpenSkyApi, StateVector
 import csv
 from os import path
+import pandas as pd
 
 
 def credentials(filename):
@@ -18,7 +19,14 @@ def get_flights_from_loc(usr, pwd, loc):
 def save_flights(with_header=False):
     columns = StateVector.keys
     columns.insert(0, 'timestamp')
-    
+
+    # Get the last flights saved
+    df = pd.read_csv("flights_over_cergy.csv")["timestamp", "callsign"]
+
+    # Get the last minute flights
+    # https://pandas.pydata.org/pandas-docs/stable/getting_started/intro_tutorials/09_timeseries.html
+    df.timestamp.dt.day.hour.minute
+
     if with_header:
         with open("flights_over_cergy.csv", 'w') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=columns)
