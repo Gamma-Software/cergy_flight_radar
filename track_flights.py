@@ -36,7 +36,7 @@ def save_flights(with_header=False):
 credential = credentials("credential.txt")
 
 # Cergy GPS Bounding Box
-cergy_location = (49.013780, 49.057670, 1.991615, 2.086029)
+cergy_location = (49.040316, 49.049739, 2.006292, 2.029595)
 states = get_flights_from_loc(credential[0], credential[1], cergy_location)
 
 # Save those flights
