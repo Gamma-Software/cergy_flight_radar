@@ -28,12 +28,12 @@ def get_number_of_flight_in_day():
     df["year"] = df.timestamp.dt.year
     df2 = df[["day"]].assign(numberplane=0)
     df3 = df2.groupby(by=["day"]).count()
-    return df3["numberplane"].tail(1).values[0]
+    return int(df3.iloc[-1]["numberplane"])
 
 
 number_of_plane = get_number_of_flight_in_day()
-print(number_of_plane)
-
+print(number_of_plane, type(number_of_plane))
+exit(0)
 publish.single("home/raspi/cergy_flights", payload=number_of_plane, hostname='192.168.1.38',
                auth={'username': credential[0], 'password': credential[1]})
 
