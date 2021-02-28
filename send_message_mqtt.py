@@ -1,9 +1,6 @@
 import sys
 import paho.mqtt.publish as publish
 
-f = open("credential_mqtt.txt", "r")
-credential = f.read().splitlines()
-
 
 def get_number_of_flight_in_day(filename):
     import pandas as pd
