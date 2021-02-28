@@ -28,8 +28,9 @@ def get_number_of_flight_in_day(filename):
 
 
 if __name__ == "__main__":
-    print(sys.argv[1])
-    number_of_plane = get_number_of_flight_in_day(sys.argv[1])
+    f = open(sys.argv[1], "r")
+    credential = f.read().splitlines()
+    number_of_plane = get_number_of_flight_in_day(sys.argv[2])
     publish.single("home/raspi/cergy_flights", payload=number_of_plane, hostname='192.168.1.38',
                    auth={'username': credential[0], 'password': credential[1]})
     print("Message ", number_of_plane, " is delivered in the topic home/raspi/cergy_flights")
