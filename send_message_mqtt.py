@@ -1,5 +1,4 @@
-import time
-import json
+import sys
 import paho.mqtt.publish as publish
 
 f = open("credential_mqtt.txt", "r")
