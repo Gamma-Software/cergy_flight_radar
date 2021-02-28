@@ -1,14 +1,10 @@
-import time
-import json
+import sys
 import paho.mqtt.publish as publish
 
-f = open("credential_mqtt.txt", "r")
-credential = f.read().splitlines()
 
-
-def get_number_of_flight_in_day():
+def get_number_of_flight_in_day(filename):
     import pandas as pd
-    df = pd.read_csv("flights_over_cergy.csv")
+    df = pd.read_csv(filename)
     del df["sensors"]
     del df["squawk"]
     del df["icao24"]
@@ -31,10 +27,10 @@ def get_number_of_flight_in_day():
     return int(df3.iloc[-1]["numberplane"])
 
 
-number_of_plane = get_number_of_flight_in_day()
-print(number_of_plane, type(number_of_plane))
-exit(0)
-publish.single("home/raspi/cergy_flights", payload=number_of_plane, hostname='192.168.1.38',
-               auth={'username': credential[0], 'password': credential[1]})
-
-print("Message ", number_of_plane, " is delivered in the topic home/raspi/cergy_flights")
+if __name__ == "__main__":
+    f = open(sys.argv[1], "r")
+    credential = f.read().splitlines()
+    number_of_plane = get_number_of_flight_in_day(sys.argv[2])
+    publish.single("home/raspi/cergy_flights", payload=number_of_plane, hostname='192.168.1.38',
+                   auth={'username': credential[0], 'password': credential[1]})
+    print("Message ", number_of_plane, " is delivered in the topic home/raspi/cergy_flights")
