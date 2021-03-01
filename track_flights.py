@@ -20,7 +20,6 @@ def get_flights_from_loc(usr, pwd, loc):
 def save_flights(filename, with_header=False):
     columns = StateVector.keys
     columns.insert(0, 'timestamp')
-    
     if with_header:
         with open(filename, 'w') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=columns)
@@ -77,7 +76,8 @@ except IOError:
 import paho.mqtt.publish as publish
 f = open(sys.argv[2], "r")
 mqtt_credential = f.read().splitlines()
-number_of_plane = get_number_of_flight_in_day()
+print(mqtt_credential[0], mqtt_credential[1])
+number_of_plane = get_number_of_flight_in_day(sys.argv[3])
 publish.single("home/raspi/cergy_flights", payload=number_of_plane, hostname='192.168.1.38',
                auth={'username': mqtt_credential[0], 'password': mqtt_credential[1]})
 print("Message ", number_of_plane, " is delivered in the topic home/raspi/cergy_flights")
