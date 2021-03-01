@@ -76,7 +76,6 @@ except IOError:
 import paho.mqtt.publish as publish
 f = open(sys.argv[2], "r")
 mqtt_credential = f.read().splitlines()
-print(mqtt_credential[0], mqtt_credential[1])
 number_of_plane = get_number_of_flight_in_day(sys.argv[3])
 publish.single("home/raspi/cergy_flights", payload=number_of_plane, hostname='192.168.1.38',
                auth={'username': mqtt_credential[0], 'password': mqtt_credential[1]})
