@@ -3,6 +3,7 @@ import csv
 from os import path
 import pandas as pd
 import sys
+from datetime import date, timedelta
 
 
 def credentials(filename):
@@ -52,12 +53,8 @@ def get_number_of_flight_in_day(filename):
     # Remove airplane passing over Cergy higher than 5000 feet
     df = df.drop(df[df.geo_altitude > 5000].index)
     df.timestamp = pd.to_datetime(df.timestamp, unit='s').dt.normalize()
-    df["day"] = df.timestamp.dt.day
-    df["month"] = df.timestamp.dt.month
-    df["year"] = df.timestamp.dt.year
-    df2 = df[["day"]].assign(numberplane=0)
-    df3 = df2.groupby(by=["day"]).count()
-    return int(df3.iloc[-1]["numberplane"])
+    return int(len(df[(df['timestamp'] > str(date.today() - timedelta(days=2)))
+                      & (df['timestamp'] < pd.to_datetime(str(date.today())))]))
 
 
 credential = credentials(sys.argv[1])
