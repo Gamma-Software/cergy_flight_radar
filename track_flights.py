@@ -60,7 +60,7 @@ def get_number_of_flight_in_day(filename):
 credential = credentials(sys.argv[1])
 
 # Cergy GPS Bounding Box
-cergy_location = (49.054183, 49.033873, 2.032642, 1.993246)
+cergy_location = (49.033873, 49.054183, 1.993246, 2.032642)
 states = get_flights_from_loc(credential[0], credential[1], cergy_location)
 
 # Save those flights
