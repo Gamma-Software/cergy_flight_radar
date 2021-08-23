@@ -128,3 +128,4 @@ dmypy.json
 .idea/
 
 credential.txt
+credential_mqtt.txt
